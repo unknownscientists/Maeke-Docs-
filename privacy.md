@@ -9,7 +9,7 @@
 ---
 
 ## 1. Overview
-This Privacy Policy describes how **unknownscientists** ("we", "us", or "our") handles personal information and user data when you download, install, or use our mobile application, **Ftt** (the "App"). 
+This Privacy  Policy describes how **unknownscientists** ("we", "us", or "our") handles personal information and user data when you download, install, or use our mobile application, **Ftt** (the "App"). 
 
 We take your privacy seriously and are committed to maintaining compliance with the **Apple App Store Review Guidelines**, the **Google Play Developer Program Policies** (including the Data Safety policy), the General Data Protection Regulation (GDPR), and the California Consumer Privacy Act (CCPA/CPRA).
 

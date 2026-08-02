@@ -1,193 +1,303 @@
-/* CSS Reset & Global Styling */
+/* ==========================================================================
+   FLUTTER THEME SYNCHRONIZED CSS (Ftt App / Legal Hub)
+   Matches Palette & Typography from app_theme.dart
+   ========================================================================== */
+
+/* --- COLOR PALETTE VARIABLES --- */
+:root {
+  /* Brand Accent & Metallic Colors */
+  --k-accent-gold-bright: #E0CA0F;
+  --k-accent-gold: #A38C0A;
+  --k-silver: #CFCFCE;
+  --k-current-status-green: #34C759;
+  --k-near-black: #0B0B0B;
+
+  /* Celest / Cosmic Dark Palette */
+  --k-cosmic-bg-top: #0F1020;
+  --k-cosmic-bg-bottom: #0B0B14;
+  --k-cosmic-card-bg: #1E1F35;
+  --k-cosmic-icon-bg: #2B2C48;
+  --k-cosmic-text-primary: #EDEDEC;
+
+  /* Light Theme Palette */
+  --k-background-base: #FAFAF9;
+  --k-text-dark-on-light: #262626;
+  --k-text-medium-on-light: #5C5C5C;
+  --k-light-card-bg: #FFFFFF;
+
+  /* Accessibility High-Contrast Overrides */
+  --k-high-contrast-text: #000000;
+  --k-high-contrast-bg: #FFFFFF;
+}
+
+/* --- RESET & BASE STYLES --- */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* Default Dark (Cosmic) Theme background matching kGradientBackgroundDark */
 body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: #f8fafc;
-    color: #1e293b;
-    line-height: 1.6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 2rem 1rem;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, var(--k-cosmic-bg-top), #15162B, var(--k-cosmic-bg-bottom));
+  color: var(--k-cosmic-text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
 }
 
-/* Container Card */
+/* --- LIGHT THEME OPT-IN CLASS (.light-theme) --- 
+   (Matches kGradientBackgroundLight & lightTheme ThemeData) */
+body.light-theme {
+  background: linear-gradient(135deg, #FAFAF9, #F5F5F4, #EDEDEC);
+  color: var(--k-text-dark-on-light);
+}
+
+body.light-theme .container {
+  background: var(--k-light-card-bg);
+  border-color: #E2E8F0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .app-header h1,
+body.light-theme .card-content h3 {
+  color: var(--k-text-dark-on-light);
+}
+
+body.light-theme .intro p,
+body.light-theme .developer-tag,
+body.light-theme .card-content p {
+  color: var(--k-text-medium-on-light);
+}
+
+body.light-theme .card {
+  background: var(--k-light-card-bg);
+  border-color: #E2E8F0;
+}
+
+body.light-theme .card-icon {
+  background: #F4F4F5;
+}
+
+/* --- MAIN RESPONSIVE CONTAINER --- 
+   (Matches ResponsiveContainer & CardThemeData) */
 .container {
-    max-width: 680px;
-    width: 100%;
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 2.5rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e2e8f0;
+  max-width: 800px; /* Matches Flutter maxWidth = 800.0 */
+  width: 100%;
+  background: var(--k-cosmic-card-bg);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* App Header */
+/* --- HEADER SECTION --- */
 .app-header {
-    text-align: center;
-    margin-bottom: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
+/* App Icon using kAccentGold background */
 .app-icon {
-    width: 72px;
-    height: 72px;
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 18px;
-    margin: 0 auto 1rem;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, var(--k-accent-gold-bright), var(--k-accent-gold));
+  color: #FFFFFF;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  margin: 0 auto 1rem;
+  box-shadow: 0 4px 14px rgba(163, 140, 10, 0.4);
 }
 
 .app-header h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #0f172a;
+  font-size: 24px; /* headlineLarge base size */
+  font-weight: 700;
+  color: #FFFFFF;
 }
 
 .developer-tag {
-    font-size: 0.95rem;
-    color: #64748b;
-    margin-top: 0.25rem;
+  font-size: 14px; /* bodyMedium base size */
+  color: var(--k-silver);
+  margin-top: 0.25rem;
 }
 
 .developer-tag span {
-    color: #2563eb;
-    font-weight: 600;
+  color: var(--k-accent-gold-bright);
+  font-weight: 600;
 }
 
-/* Intro Text */
+/* --- INTRO SECTION --- */
 .intro {
-    text-align: center;
-    margin-bottom: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .intro h2 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    color: #334155;
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--k-accent-gold-bright);
 }
 
 .intro p {
-    color: #64748b;
-    font-size: 0.95rem;
+  color: var(--k-silver);
+  font-size: 16px; /* bodyLarge base size */
 }
 
-/* Navigation Cards Grid */
+/* --- CARD NAV GRID --- */
 .card-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
 
 .card {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.25rem;
-    padding: 1.25rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.2s ease-in-out;
-    background: #ffffff;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  background: var(--k-cosmic-card-bg);
+  border: 1px solid rgba(207, 207, 206, 0.15);
+  border-radius: 12px; /* Matches Flutter ElevatedButton shape */
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease-in-out;
 }
 
 .card:hover {
-    border-color: #2563eb;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);
+  border-color: var(--k-accent-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(163, 140, 10, 0.2);
 }
 
 .card-icon {
-    font-size: 1.75rem;
-    background: #eff6ff;
-    padding: 0.5rem;
-    border-radius: 10px;
+  font-size: 1.5rem;
+  background: var(--k-cosmic-icon-bg);
+  padding: 0.6rem;
+  border-radius: 10px;
 }
 
 .card-content h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #0f172a;
-    margin-bottom: 0.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: 0.25rem;
 }
 
 .card-content p {
-    font-size: 0.875rem;
-    color: #64748b;
-    margin-bottom: 0.5rem;
+  font-size: 14px;
+  color: var(--k-silver);
+  margin-bottom: 0.5rem;
 }
 
 .btn-text {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: #2563eb;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--k-accent-gold-bright);
 }
 
-/* Account Deletion Section */
+/* --- ACCOUNT DELETION BOX & BUTTONS --- */
 .deletion-box {
-    background: #f8fafc;
-    border: 1px dashed #cbd5e1;
-    border-radius: 12px;
-    padding: 1.25rem;
-    text-align: center;
-    margin-bottom: 2rem;
+  background: rgba(11, 11, 20, 0.5);
+  border: 1px dashed var(--k-silver);
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .deletion-box h3 {
-    font-size: 1rem;
-    color: #334155;
-    margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: var(--k-cosmic-text-primary);
+  margin-bottom: 0.5rem;
 }
 
 .deletion-box p {
-    font-size: 0.875rem;
-    color: #64748b;
-    margin-bottom: 1rem;
+  font-size: 14px;
+  color: var(--k-silver);
+  margin-bottom: 1rem;
 }
 
+/* Matches ElevatedButtonThemeData (kAccentGold background) */
 .email-btn {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    background: #0f172a;
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-    border-radius: 6px;
-    transition: background 0.2s;
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: var(--k-accent-gold);
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 12px;
+  transition: background 0.2s, transform 0.1s;
 }
 
 .email-btn:hover {
-    background: #1e293b;
+  background-color: var(--k-accent-gold-bright);
+  color: var(--k-near-black);
 }
 
-/* Footer */
+/* Status Indicator Tag for Current Level/Active Page */
+.status-tag {
+  display: inline-block;
+  background-color: var(--k-current-status-green);
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-left: 8px;
+}
+
+/* --- FOOTER --- */
 footer {
-    text-align: center;
-    border-top: 1px solid #f1f5f9;
-    padding-top: 1.5rem;
-    font-size: 0.85rem;
-    color: #94a3b8;
+  text-align: center;
+  border-top: 1px solid rgba(207, 207, 206, 0.1);
+  padding-top: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--k-silver);
 }
 
 footer a {
-    color: #2563eb;
-    text-decoration: none;
+  color: var(--k-accent-gold-bright);
+  text-decoration: none;
 }
 
 footer a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
+}
+
+/* --- HIGH CONTRAST MODE OPT-IN CLASS (.high-contrast) --- 
+   (Matches highContrastTheme ThemeData) */
+body.high-contrast {
+  background: var(--k-high-contrast-bg) !important;
+  color: var(--k-high-contrast-text) !important;
+}
+
+body.high-contrast .container {
+  background: #FFFFFF !important;
+  border: 2px solid #000000 !important;
+  box-shadow: none !important;
+}
+
+body.high-contrast h1,
+body.high-contrast h2,
+body.high-contrast h3,
+body.high-contrast p,
+body.high-contrast a,
+body.high-contrast span {
+  color: #000000 !important;
+}
+
+body.high-contrast .email-btn {
+  background: #000000 !important;
+  color: #FFFFFF !important;
+  border: 2px solid #000000 !important;
 }

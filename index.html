@@ -1,101 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>unknownscientistś - A Golden Future</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>unknownscientistś — A Thought Towards A Golden Future</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Star Flare Background Layer -->
-    <div class="star-flares-container">
-        <div class="star-flare flare-1"></div>
-        <div class="star-flare flare-2"></div>
-        <div class="star-flare flare-3"></div>
-        <div class="star-flare flare-4"></div>
-        <div class="star-flare flare-5"></div>
-    </div>
+  <!-- Star Flare Background Canvas -->
+  <canvas id="starfieldCanvas"></canvas>
 
-    <main class="container">
-        <!-- Header Section -->
-        <header class="app-header">
-            <div class="logo-badge">
-                <span class="logo-icon">🔬</span>
-                <span class="logo-text">unknownscientistś</span>
-            </div>
-            <p class="subtitle">A Thought Towards,</p>
-            <h1>A Golden Future</h1>
-        </header>
+  <div class="layout-wrapper">
+    
+    <!-- Top Bar Header -->
+    <header class="site-header">
+      <div class="brand-logo">
+        <span class="logo-accent">unknown</span>scientistś
+      </div>
+      <div class="top-checkbox-wrapper">
+        <label class="checkbox-container">
+          <input type="checkbox" id="joinOrgCheck">
+          <span class="checkmark"></span>
+          <span class="checkbox-label">I want to know how I can be a part of your organization.</span>
+        </label>
+      </div>
+    </header>
 
-        <!-- 16:9 Hero Image Panel -->
-        <section class="hero-glass-panel">
-            <div class="glass-header">
-                <span class="badge">Future Impact Initiative</span>
-                <span class="status-tag">ACTIVE INITIATIVE</span>
-            </div>
-            
-            <div class="hero-image-wrapper">
-                <img src="hero-image.jpeg" alt="Future Impact Visual" class="hero-photo">
-            </div>
-        </section>
+    <!-- Main Hero Section -->
+    <main class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">A Thought Towards,</h1>
+        <h2 class="hero-subtitle">A Golden Future</h2>
+        
+        <form class="subscription-form" onsubmit="event.preventDefault();">
+          <div class="input-group">
+            <label for="emailInput">Email*</label>
+            <input type="email" id="emailInput" placeholder="Enter your email address" required>
+          </div>
+          <button type="submit" class="btn-send">Send</button>
+        </form>
+      </div>
 
-        <!-- Store Legal Document Links -->
-        <section class="card-grid">
-            <a href="privacy.html" class="card">
-                <div class="card-icon">🔒</div>
-                <div class="card-content">
-                    <h3>Ftt Privacy Policy</h3>
-                    <p>Learn how Ftt handles your data, permissions, and privacy rights.</p>
-                    <span class="btn-text">Read Privacy Policy &rarr;</span>
-                </div>
-            </a>
+      <!-- Rotating Hero Media Box -->
+      <div class="hero-media-container">
+        <div class="hero-slider">
+          <div class="slide active">
+            <img src="hero-image.jpeg" alt="Hero Slide 1">
+          </div>
+          <div class="slide">
+            <img src="hero-image2.jpeg" alt="Hero Slide 2">
+          </div>
+          <div class="slide">
+            <img src="hero-image3.jpeg" alt="Hero Slide 3">
+          </div>
 
-            <a href="terms.html" class="card">
-                <div class="card-icon">📜</div>
-                <div class="card-content">
-                    <h3>Ftt Terms</h3>
-                    <p>Review the End User License Agreement (EULA) and usage terms for Ftt.</p>
-                    <span class="btn-text">Read Terms of Service &rarr;</span>
-                </div>
-            </a>
-        </section>
-
-        <!-- Contact & Organization Interest Form -->
-        <section class="contact-box">
-            <h3>Get in Touch</h3>
-            <p>Reach out to us directly or express your interest in joining our mission.</p>
-
-            <form action="mailto:uns@gmail.com" method="post" enctype="text/plain" class="inquiry-form">
-                <div class="form-group">
-                    <label for="user-email">Email*</label>
-                    <input type="email" id="user-email" name="Email" placeholder="your.email@domain.com" required>
-                </div>
-
-                <div class="checkbox-group">
-                    <input type="checkbox" id="org-interest" name="Interest" value="Organization Inquiry">
-                    <label for="org-interest">I want to know how I can be a part of your organization.</label>
-                </div>
-
-                <button type="submit" class="email-btn">Send</button>
-            </form>
-        </section>
-
-        <!-- Footer with Contact Info & Location -->
-        <footer>
-            <div class="footer-details">
-                <p><strong>unknownscientistś</strong></p>
-                <p>7 Hex, Queensdale, Harare</p>
-                <p>Phone: <a href="tel:+263774206250">+263 774 206250</a> | Email: <a href="mailto:uns@gmail.com">uns@gmail.com</a></p>
-            </div>
-            <div class="footer-copyright">
-                <p>&copy; 2026 by unknownscientistś. All rights reserved.</p>
-            </div>
-        </footer>
+          <!-- Animated Overlay Effects: Particles, Pulsing Cell Core & DNA Strand -->
+          <div class="dna-rotation-overlay"></div>
+          <div class="cell-core-pulse"></div>
+          <div class="particles-layer">
+            <span class="p-particle"></span>
+            <span class="p-particle"></span>
+            <span class="p-particle"></span>
+            <span class="p-particle"></span>
+            <span class="p-particle"></span>
+          </div>
+        </div>
+      </div>
     </main>
 
+    <!-- Footer Contact & Info Section -->
+    <footer class="site-footer">
+      <div class="footer-columns">
+        <div class="footer-col brand-col">
+          <h3>unknownscientistś</h3>
+          <p class="copyright">&copy; 2026 by unknownscientistś.</p>
+        </div>
+
+        <div class="footer-col contact-col">
+          <h4>Contact</h4>
+          <p><a href="tel:+263774206250">+263 774 206250</a></p>
+          <p><a href="mailto:uns@gmail.com">uns@gmail.com</a></p>
+          <p>7 Hex, Queensdale, Harare</p>
+        </div>
+
+        <div class="footer-col links-col">
+          <h4>Legal</h4>
+          <p><a href="privacy.html" target="_blank" rel="noopener">Ftt Privacy Policy</a></p>
+          <p><a href="terms.html" target="_blank" rel="noopener">Ftt Terms</a></p>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Auto-Rotation & Star Flare Logic -->
+  <script>
+    // 1. Auto Rotating 16:9 Carousel (3 seconds interval)
+    const slides = document.querySelectorAll('.hero-slider .slide');
+    let currentSlide = 0;
+
+    function rotateSlides() {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+    setInterval(rotateSlides, 4000);
+
+    // 2. Star Flare Background Canvas Simulation
+    const canvas = document.getElementById('starfieldCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let stars = [];
+    const starCount = 60;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class StarFlare {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.alpha = Math.random();
+        this.speed = Math.random() * 0.01 + 0.005;
+        this.increasing = Math.random() > 0.5;
+        this.color = Math.random() > 0.3 ? '#E0CA0F' : '#FFFFFF';
+      }
+
+      update() {
+        if (this.increasing) {
+          this.alpha += this.speed;
+          if (this.alpha >= 1) this.increasing = false;
+        } else {
+          this.alpha -= this.speed;
+          if (this.alpha <= 0.1) this.increasing = true;
+        }
+      }
+
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        ctx.fillStyle = this.color;
+        
+        // Draw Core
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Subtle Lens Flare Cross
+        if (this.size > 1.8) {
+          ctx.strokeStyle = this.color;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(this.x - this.size * 4, this.y);
+          ctx.lineTo(this.x + this.size * 4, this.y);
+          ctx.moveTo(this.x, this.y - this.size * 4);
+          ctx.lineTo(this.x, this.y + this.size * 4);
+          ctx.stroke();
+        }
+
+        ctx.restore();
+      }
+    }
+
+    for (let i = 0; i < starCount; i++) {
+      stars.push(new StarFlare());
+    }
+
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(star => {
+        star.update();
+        star.draw();
+      });
+      requestAnimationFrame(animateStars);
+    }
+    animateStars();
+  </script>
 </body>
 </html>

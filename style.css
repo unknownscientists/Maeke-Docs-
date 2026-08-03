@@ -1,11 +1,10 @@
 /* ==========================================================================
-   FLUTTER THEME SYNCHRONIZED CSS (Ftt App / Legal Hub)
-   Matches Palette & Typography from app_theme.dart
+   FLUTTER THEME & FUTURE IMPACT GLASSMORPHISM SYNCHRONIZED CSS
+   App: Ftt | Developer: unknownscientistś
    ========================================================================== */
 
-/* --- COLOR PALETTE VARIABLES --- */
 :root {
-  /* Brand Accent & Metallic Colors */
+  /* Brand Accent & Metallic Colors (from app_theme.dart) */
   --k-accent-gold-bright: #E0CA0F;
   --k-accent-gold: #A38C0A;
   --k-silver: #CFCFCE;
@@ -19,25 +18,20 @@
   --k-cosmic-icon-bg: #2B2C48;
   --k-cosmic-text-primary: #EDEDEC;
 
-  /* Light Theme Palette */
-  --k-background-base: #FAFAF9;
-  --k-text-dark-on-light: #262626;
-  --k-text-medium-on-light: #5C5C5C;
-  --k-light-card-bg: #FFFFFF;
-
-  /* Accessibility High-Contrast Overrides */
-  --k-high-contrast-text: #000000;
-  --k-high-contrast-bg: #FFFFFF;
+  /* Future Impact Glassmorphism Theme Overrides */
+  --glass-bg: rgba(166, 228, 247, 0.12);
+  --glass-border: rgba(255, 255, 255, 0.25);
+  --cyan-glow: #7EE7FF;
+  --mint-accent: #81F3C8;
 }
 
-/* --- RESET & BASE STYLES --- */
+/* Reset & Cosmic Background */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Default Dark (Cosmic) Theme background matching kGradientBackgroundDark */
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background: linear-gradient(135deg, var(--k-cosmic-bg-top), #15162B, var(--k-cosmic-bg-bottom));
@@ -50,108 +44,108 @@ body {
   padding: 2rem 1rem;
 }
 
-/* --- LIGHT THEME OPT-IN CLASS (.light-theme) --- 
-   (Matches kGradientBackgroundLight & lightTheme ThemeData) */
-body.light-theme {
-  background: linear-gradient(135deg, #FAFAF9, #F5F5F4, #EDEDEC);
-  color: var(--k-text-dark-on-light);
-}
-
-body.light-theme .container {
-  background: var(--k-light-card-bg);
-  border-color: #E2E8F0;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-}
-
-body.light-theme .app-header h1,
-body.light-theme .card-content h3 {
-  color: var(--k-text-dark-on-light);
-}
-
-body.light-theme .intro p,
-body.light-theme .developer-tag,
-body.light-theme .card-content p {
-  color: var(--k-text-medium-on-light);
-}
-
-body.light-theme .card {
-  background: var(--k-light-card-bg);
-  border-color: #E2E8F0;
-}
-
-body.light-theme .card-icon {
-  background: #F4F4F5;
-}
-
-/* --- MAIN RESPONSIVE CONTAINER --- 
-   (Matches ResponsiveContainer & CardThemeData) */
+/* Main Container (Responsive Limit = 800px) */
 .container {
-  max-width: 800px; /* Matches Flutter maxWidth = 800.0 */
+  max-width: 800px;
   width: 100%;
   background: var(--k-cosmic-card-bg);
-  border-radius: 16px;
+  border-radius: 24px;
   padding: 2.5rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* --- HEADER SECTION --- */
+/* Header Section */
 .app-header {
   text-align: center;
   margin-bottom: 2rem;
 }
 
-/* App Icon using kAccentGold background */
-.app-icon {
-  width: 72px;
-  height: 72px;
-  background: linear-gradient(135deg, var(--k-accent-gold-bright), var(--k-accent-gold));
-  color: #FFFFFF;
-  font-size: 1.5rem;
-  font-weight: 700;
-  display: flex;
+.logo-badge {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 16px;
-  margin: 0 auto 1rem;
-  box-shadow: 0 4px 14px rgba(163, 140, 10, 0.4);
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  padding: 0.5rem 1.25rem;
+  border-radius: 30px;
+  margin-bottom: 1rem;
+}
+
+.logo-icon {
+  font-size: 1.2rem;
+}
+
+.logo-text {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--k-accent-gold-bright);
+  letter-spacing: 0.5px;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: var(--k-silver);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
 }
 
 .app-header h1 {
-  font-size: 24px; /* headlineLarge base size */
-  font-weight: 700;
+  font-size: 2.25rem;
+  font-weight: 800;
   color: #FFFFFF;
 }
 
-.developer-tag {
-  font-size: 14px; /* bodyMedium base size */
-  color: var(--k-silver);
-  margin-top: 0.25rem;
-}
-
-.developer-tag span {
-  color: var(--k-accent-gold-bright);
-  font-weight: 600;
-}
-
-/* --- INTRO SECTION --- */
-.intro {
-  text-align: center;
+/* Hero Glassmorphism Panel */
+.hero-glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 1.25rem;
   margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
 }
 
-.intro h2 {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-  color: var(--k-accent-gold-bright);
+.glass-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
-.intro p {
-  color: var(--k-silver);
-  font-size: 16px; /* bodyLarge base size */
+.badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--cyan-glow);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* --- CARD NAV GRID --- */
+.status-tag {
+  background-color: var(--k-current-status-green);
+  color: #FFFFFF;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.hero-svg-wrapper {
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.hero-illustration {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Document Cards Grid */
 .card-grid {
   display: flex;
   flex-direction: column;
@@ -164,25 +158,25 @@ body.light-theme .card-icon {
   align-items: flex-start;
   gap: 1.25rem;
   padding: 1.25rem;
-  background: var(--k-cosmic-card-bg);
+  background: rgba(11, 11, 20, 0.6);
   border: 1px solid rgba(207, 207, 206, 0.15);
-  border-radius: 12px; /* Matches Flutter ElevatedButton shape */
+  border-radius: 16px;
   text-decoration: none;
   color: inherit;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.25s ease;
 }
 
 .card:hover {
   border-color: var(--k-accent-gold);
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(163, 140, 10, 0.2);
+  box-shadow: 0 6px 20px rgba(163, 140, 10, 0.25);
 }
 
 .card-icon {
   font-size: 1.5rem;
   background: var(--k-cosmic-icon-bg);
   padding: 0.6rem;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .card-content h3 {
@@ -193,49 +187,103 @@ body.light-theme .card-icon {
 }
 
 .card-content p {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--k-silver);
   margin-bottom: 0.5rem;
 }
 
 .btn-text {
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
   color: var(--k-accent-gold-bright);
 }
 
-/* --- ACCOUNT DELETION BOX & BUTTONS --- */
-.deletion-box {
-  background: rgba(11, 11, 20, 0.5);
+/* Contact & Inquiry Section */
+.contact-box {
+  background: rgba(11, 11, 20, 0.4);
   border: 1px dashed var(--k-silver);
-  border-radius: 12px;
-  padding: 1.25rem;
-  text-align: center;
+  border-radius: 16px;
+  padding: 1.5rem;
   margin-bottom: 2rem;
 }
 
-.deletion-box h3 {
-  font-size: 1rem;
-  color: var(--k-cosmic-text-primary);
-  margin-bottom: 0.5rem;
+.contact-box h3 {
+  font-size: 1.1rem;
+  color: #FFFFFF;
+  margin-bottom: 0.25rem;
 }
 
-.deletion-box p {
-  font-size: 14px;
+.contact-box p {
+  font-size: 0.875rem;
   color: var(--k-silver);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
-/* Matches ElevatedButtonThemeData (kAccentGold background) */
+.inquiry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--k-silver);
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--k-cosmic-icon-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #FFFFFF;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.form-group input:focus {
+  border-color: var(--k-accent-gold-bright);
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-align: left;
+}
+
+.checkbox-group input[type="checkbox"] {
+  accent-color: var(--k-accent-gold);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.checkbox-group label {
+  font-size: 0.85rem;
+  color: var(--k-silver);
+  cursor: pointer;
+}
+
+/* Send Button (Matches Flutter ElevatedButton Theme) */
 .email-btn {
-  display: inline-block;
-  padding: 12px 24px;
+  align-self: flex-start;
+  padding: 0.75rem 2rem;
   background-color: var(--k-accent-gold);
   color: #FFFFFF;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 600;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 700;
   border-radius: 12px;
+  cursor: pointer;
   transition: background 0.2s, transform 0.1s;
 }
 
@@ -244,25 +292,21 @@ body.light-theme .card-icon {
   color: var(--k-near-black);
 }
 
-/* Status Indicator Tag for Current Level/Active Page */
-.status-tag {
-  display: inline-block;
-  background-color: var(--k-current-status-green);
-  color: #FFFFFF;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 6px;
-  margin-left: 8px;
-}
-
-/* --- FOOTER --- */
+/* Footer Section */
 footer {
-  text-align: center;
   border-top: 1px solid rgba(207, 207, 206, 0.1);
   padding-top: 1.5rem;
   font-size: 0.85rem;
   color: var(--k-silver);
+  text-align: center;
+}
+
+.footer-details p {
+  margin-bottom: 0.25rem;
+}
+
+.footer-copyright {
+  margin-top: 1rem;
 }
 
 footer a {
@@ -272,32 +316,4 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
-}
-
-/* --- HIGH CONTRAST MODE OPT-IN CLASS (.high-contrast) --- 
-   (Matches highContrastTheme ThemeData) */
-body.high-contrast {
-  background: var(--k-high-contrast-bg) !important;
-  color: var(--k-high-contrast-text) !important;
-}
-
-body.high-contrast .container {
-  background: #FFFFFF !important;
-  border: 2px solid #000000 !important;
-  box-shadow: none !important;
-}
-
-body.high-contrast h1,
-body.high-contrast h2,
-body.high-contrast h3,
-body.high-contrast p,
-body.high-contrast a,
-body.high-contrast span {
-  color: #000000 !important;
-}
-
-body.high-contrast .email-btn {
-  background: #000000 !important;
-  color: #FFFFFF !important;
-  border: 2px solid #000000 !important;
 }

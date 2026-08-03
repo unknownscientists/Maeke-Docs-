@@ -3,30 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>unknownscientistś — A Thought Towards A Golden Future</title>
+  <title>unknownscientistś - A Thought Towards A Golden Future</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Canvas layer for background particles, DNA rotation & star flares -->
+  <canvas id="cosmic-canvas"></canvas>
 
-  <!-- Star Flare Background Canvas -->
-  <canvas id="starfieldCanvas"></canvas>
-
-  <div class="layout-wrapper">
-    
-    <!-- Top Bar Header -->
+  <div class="site-wrapper">
+    <!-- Header / Branding -->
     <header class="site-header">
-      <div class="brand-logo">
-        <span class="logo-accent">unknown</span>scientistś
-      </div>
-      <div class="top-checkbox-wrapper">
-        <label class="checkbox-container">
-          <input type="checkbox" id="joinOrgCheck">
-          <span class="checkmark"></span>
-          <span class="checkbox-label">I want to know how I can be a part of your organization.</span>
-        </label>
+      <div class="logo-container">
+        <img src="logo.jpeg" alt="unknownscientistś logo" class="brand-logo-img" onerror="this.style.display='none'">
+        <span class="brand-logo-text">
+          <span class="silver">unknown</span><span class="gold">scientistś</span>
+        </span>
       </div>
     </header>
 
@@ -35,159 +29,211 @@
       <div class="hero-content">
         <h1 class="hero-title">A Thought Towards,</h1>
         <h2 class="hero-subtitle">A Golden Future</h2>
-        
-        <form class="subscription-form" onsubmit="event.preventDefault();">
-          <div class="input-group">
-            <label for="emailInput">Email*</label>
-            <input type="email" id="emailInput" placeholder="Enter your email address" required>
-          </div>
-          <button type="submit" class="btn-send">Send</button>
-        </form>
-      </div>
 
-      <!-- Rotating Hero Media Box -->
-      <div class="hero-media-container">
-        <div class="hero-slider">
-          <div class="slide active">
+        <!-- 16:9 Auto-Rotating Hero Carousel -->
+        <div class="carousel-container">
+          <div class="carousel-slide active">
             <img src="hero-image.jpeg" alt="Hero Slide 1">
           </div>
-          <div class="slide">
+          <div class="carousel-slide">
             <img src="hero-image2.jpeg" alt="Hero Slide 2">
           </div>
-          <div class="slide">
+          <div class="carousel-slide">
             <img src="hero-image3.jpeg" alt="Hero Slide 3">
           </div>
 
-          <!-- Animated Overlay Effects: Particles, Pulsing Cell Core & DNA Strand -->
-          <div class="dna-rotation-overlay"></div>
-          <div class="cell-core-pulse"></div>
-          <div class="particles-layer">
-            <span class="p-particle"></span>
-            <span class="p-particle"></span>
-            <span class="p-particle"></span>
-            <span class="p-particle"></span>
-            <span class="p-particle"></span>
+          <div class="carousel-indicators">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
           </div>
         </div>
       </div>
     </main>
 
-    <!-- Footer Contact & Info Section -->
-    <footer class="site-footer">
-      <div class="footer-columns">
-        <div class="footer-col brand-col">
-          <h3>unknownscientistś</h3>
-          <p class="copyright">&copy; 2026 by unknownscientistś.</p>
-        </div>
-
-        <div class="footer-col contact-col">
-          <h4>Contact</h4>
-          <p><a href="tel:+263774206250">+263 774 206250</a></p>
-          <p><a href="mailto:uns@gmail.com">uns@gmail.com</a></p>
-          <p>7 Hex, Queensdale, Harare</p>
-        </div>
-
-        <div class="footer-col links-col">
-          <h4>Legal</h4>
-          <p><a href="privacy.html" target="_blank" rel="noopener">Ftt Privacy Policy</a></p>
-          <p><a href="terms.html" target="_blank" rel="noopener">Ftt Terms</a></p>
-        </div>
+    <!-- Contact Details & Info -->
+    <section class="contact-section">
+      <div class="info-card">
+        <h3>Contact Us</h3>
+        <p class="phone">+263 774 206250</p>
+        <p class="email"><a href="mailto:uns@gmail.com">uns@gmail.com</a></p>
+        <p class="address">7 Hex, Queensdale, Harare</p>
       </div>
-    </footer>
+    </section>
 
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="privacy.html">Ftt Privacy Policy</a>
+        <span class="divider">•</span>
+        <a href="terms.html">Ftt Terms</a>
+      </div>
+      <p class="copyright">&copy; 2026 by unknownscientistś.</p>
+    </footer>
   </div>
 
-  <!-- Auto-Rotation & Star Flare Logic -->
   <script>
-    // 1. Auto Rotating 16:9 Carousel (3 seconds interval)
-    const slides = document.querySelectorAll('.hero-slider .slide');
+    // --- 1. HERO CAROUSEL AUTO-ROTATE ---
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.dot');
     let currentSlide = 0;
 
-    function rotateSlides() {
-      slides[currentSlide].classList.remove('active');
-      currentSlide = (currentSlide + 1) % slides.length;
-      slides[currentSlide].classList.add('active');
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === index);
+        dots[i].classList.toggle('active', i === index);
+      });
     }
-    setInterval(rotateSlides, 4000);
 
-    // 2. Star Flare Background Canvas Simulation
-    const canvas = document.getElementById('starfieldCanvas');
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    setInterval(nextSlide, 5000);
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentSlide = index;
+        showSlide(currentSlide);
+      });
+    });
+
+    // --- 2. CANVASES: PARTICLES, PULSING CELL, DNA & STAR FLARES ---
+    const canvas = document.getElementById('cosmic-canvas');
     const ctx = canvas.getContext('2d');
 
-    let stars = [];
-    const starCount = 60;
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    let width, height;
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
     }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
+    window.addEventListener('resize', resize);
+    resize();
 
-    class StarFlare {
-      constructor() {
-        this.reset();
-      }
+    // Floating Particles
+    const particles = Array.from({ length: 45 }, () => ({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      radius: Math.random() * 2 + 0.5,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      alpha: Math.random() * 0.5 + 0.2
+    }));
 
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 0.5;
-        this.alpha = Math.random();
-        this.speed = Math.random() * 0.01 + 0.005;
-        this.increasing = Math.random() > 0.5;
-        this.color = Math.random() > 0.3 ? '#E0CA0F' : '#FFFFFF';
-      }
+    // Star Flares
+    const starFlares = Array.from({ length: 12 }, () => ({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      size: Math.random() * 20 + 10,
+      brightness: Math.random(),
+      speed: Math.random() * 0.02 + 0.005
+    }));
 
-      update() {
-        if (this.increasing) {
-          this.alpha += this.speed;
-          if (this.alpha >= 1) this.increasing = false;
-        } else {
-          this.alpha -= this.speed;
-          if (this.alpha <= 0.1) this.increasing = true;
-        }
-      }
+    let dnaAngle = 0;
 
-      draw() {
-        ctx.save();
-        ctx.globalAlpha = this.alpha;
-        ctx.fillStyle = this.color;
-        
-        // Draw Core
+    function drawScene() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Gradient background blend
+      const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+      bgGrad.addColorStop(0, '#0F1020');
+      bgGrad.addColorStop(0.5, '#15162B');
+      bgGrad.addColorStop(1, '#0B0B14');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, width, height);
+
+      // --- Pulsing Cell Core (Background Right) ---
+      const time = Date.now() * 0.0015;
+      const coreX = width * 0.85;
+      const coreY = height * 0.3;
+      const pulseRadius = 120 + Math.sin(time) * 15;
+
+      const cellGrad = ctx.createRadialGradient(coreX, coreY, 10, coreX, coreY, pulseRadius);
+      cellGrad.addColorStop(0, 'rgba(224, 202, 15, 0.25)');
+      cellGrad.addColorStop(0.5, 'rgba(30, 31, 53, 0.15)');
+      cellGrad.addColorStop(1, 'rgba(11, 11, 20, 0)');
+      ctx.fillStyle = cellGrad;
+      ctx.beginPath();
+      ctx.arc(coreX, coreY, pulseRadius, 0, Math.PI * 2);
+      ctx.fill();
+
+      // --- Slow DNA Rotation (Background Left) ---
+      dnaAngle += 0.01;
+      const dnaX = width * 0.12;
+      const dnaBaseY = height * 0.5;
+      const numStrands = 14;
+      ctx.lineWidth = 1.5;
+
+      for (let i = 0; i < numStrands; i++) {
+        const y = dnaBaseY + (i - numStrands / 2) * 22;
+        const off = i * 0.3 + dnaAngle;
+        const x1 = dnaX + Math.sin(off) * 35;
+        const x2 = dnaX - Math.sin(off) * 35;
+
+        // Connecting rung
+        ctx.strokeStyle = 'rgba(207, 207, 206, 0.12)';
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.moveTo(x1, y);
+        ctx.lineTo(x2, y);
+        ctx.stroke();
+
+        // Strand Nodes
+        ctx.fillStyle = 'rgba(224, 202, 15, 0.4)';
+        ctx.beginPath();
+        ctx.arc(x1, y, 2.5, 0, Math.PI * 2);
         ctx.fill();
 
-        // Subtle Lens Flare Cross
-        if (this.size > 1.8) {
-          ctx.strokeStyle = this.color;
-          ctx.lineWidth = 0.5;
-          ctx.beginPath();
-          ctx.moveTo(this.x - this.size * 4, this.y);
-          ctx.lineTo(this.x + this.size * 4, this.y);
-          ctx.moveTo(this.x, this.y - this.size * 4);
-          ctx.lineTo(this.x, this.y + this.size * 4);
-          ctx.stroke();
-        }
-
-        ctx.restore();
+        ctx.fillStyle = 'rgba(207, 207, 206, 0.4)';
+        ctx.beginPath();
+        ctx.arc(x2, y, 2.5, 0, Math.PI * 2);
+        ctx.fill();
       }
-    }
 
-    for (let i = 0; i < starCount; i++) {
-      stars.push(new StarFlare());
-    }
+      // --- Star Flares ---
+      starFlares.forEach(star => {
+        star.brightness += star.speed;
+        const currentAlpha = (Math.sin(star.brightness) + 1) / 2 * 0.6;
+        
+        ctx.save();
+        ctx.translate(star.x, star.y);
+        ctx.strokeStyle = `rgba(224, 202, 15, ${currentAlpha})`;
+        ctx.lineWidth = 1;
 
-    function animateStars() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      stars.forEach(star => {
-        star.update();
-        star.draw();
+        // Cross flare lines
+        ctx.beginPath();
+        ctx.moveTo(-star.size, 0); ctx.lineTo(star.size, 0);
+        ctx.moveTo(0, -star.size); ctx.lineTo(0, star.size);
+        ctx.stroke();
+
+        // Flare core
+        ctx.fillStyle = `rgba(255, 255, 255, ${currentAlpha})`;
+        ctx.beginPath();
+        ctx.arc(0, 0, 1.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
       });
-      requestAnimationFrame(animateStars);
+
+      // --- Drifting Particles ---
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
+        ctx.fillStyle = `rgba(207, 207, 206, ${p.alpha})`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      requestAnimationFrame(drawScene);
     }
-    animateStars();
+
+    drawScene();
   </script>
 </body>
 </html>

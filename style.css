@@ -4,7 +4,7 @@
    ========================================================================== */
 
 :root {
-  /* Brand Accent & Metallic Colors (from app_theme.dart) */
+  /* Brand Accent & Metallic Colors */
   --k-accent-gold-bright: #E0CA0F;
   --k-accent-gold: #A38C0A;
   --k-silver: #CFCFCE;
@@ -133,16 +133,23 @@ body {
   border-radius: 6px;
 }
 
-.hero-svg-wrapper {
+/* Hero Photo Wrapper */
+.hero-image-wrapper {
   width: 100%;
   border-radius: 14px;
   overflow: hidden;
+  max-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.hero-illustration {
+.hero-photo {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
+  border-radius: 14px;
 }
 
 /* Document Cards Grid */
@@ -273,7 +280,7 @@ body {
   cursor: pointer;
 }
 
-/* Send Button (Matches Flutter ElevatedButton Theme) */
+/* Send Button */
 .email-btn {
   align-self: flex-start;
   padding: 0.75rem 2rem;

@@ -2,7 +2,7 @@
 
 **Last updated:** August 1, 2026
 
-**Developer:** unknownscientists  
+**Developer:** unknownscientistś 
 **Website:** [https://www.linkedin.com/company/unknownscientistś/](https://www.linkedin.com/company/unknownscientistś/)  
 **Contact Email:** uns@gmail.com  
 
